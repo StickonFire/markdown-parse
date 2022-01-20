@@ -17,7 +17,9 @@ public class MarkdownParse {
             int closeParen = markdown.indexOf(")", openParen);
             toReturn.add(markdown.substring(openParen + 1, closeParen));
             currentIndex = closeParen + 1;
+            System.out.println(currentIndex);
         }
+        
         return toReturn;
     }
     public static void main(String[] args) throws IOException {

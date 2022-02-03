@@ -17,11 +17,24 @@ public class MarkdownParseTest {
         assertEquals(8, 9-1);
     }
 
+    public void autoTestMarkdownParse(String[] results, String file) throws IOException{
+        ArrayList<String> links = new ArrayList<String>();
+        for(String link : results){
+            links.add(link);
+        }
+        String issue = Files.readString(Path.of(file));
+        assertEquals(MarkdownParse.getLinks(issue),links);
+    }
+
     @Test
     public void testSecondaryBug() throws IOException{
-        ArrayList<String> links = new ArrayList<String>();
-        links.add("www.weirdP().com");
-        String issue = Files.readString(Path.of("edge-case.md"));
-        assertEquals(MarkdownParse.getLinks(issue),links);
+        String[] links = {"www.weirdP().com"};
+        autoTestMarkdownParse(links, "edge-case.md");
+    }
+
+    @Test
+    public void testEdge_Case2() throws IOException{
+        String[] links = {"google.com"};
+        autoTestMarkdownParse(links, "edge_case2.md");
     }
 }

@@ -17,7 +17,10 @@ public class MarkdownParse {
             }
             int nextCloseBracket = markdown.indexOf("]", nextOpenBracket);
             int openParen = markdown.indexOf("(", nextCloseBracket);
-            int closeParen = markdown.indexOf(")", openParen);
+            
+            int suffix = markdown.indexOf(".com", openParen);
+            
+            int closeParen = markdown.indexOf(")", suffix);
             String result = markdown.substring(openParen + 1, closeParen);
             if(result.length() > 3 && result.indexOf(".") != -1){
                 toReturn.add(result);
